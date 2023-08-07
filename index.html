@@ -112,7 +112,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -134,6 +134,93 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://youngch330.github.io/2023/08/07/%E5%AD%97%E7%AC%A6%E7%BF%BB%E8%BD%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Young">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Young's 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Young's 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/07/%E5%AD%97%E7%AC%A6%E7%BF%BB%E8%BD%AC/" class="post-title-link" itemprop="url">字符翻转</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-08-07 13:18:04 / 修改时间：13:24:57" itemprop="dateCreated datePublished" datetime="2023-08-07T13:18:04+08:00">2023-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个字符串 <code>s</code> 和一个整数 <code>k</code>，从字符串开头算起，每计数至 <code>2k</code> 个字符，就反转这 <code>2k</code> 字符中的前 <code>k</code> 个字符。</p>
+<ul>
+<li>如果剩余字符少于 <code>k</code> 个，则将剩余字符全部反转。</li>
+<li>如果剩余字符小于 <code>2k</code> 但大于或等于 <code>k</code> 个，则反转前 <code>k</code> 个字符，其余字符保持原样。</li>
+</ul>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><strong>重点是掌握python的切片</strong></p>
+<p>① 使用快慢指针对字符数组做切片，通过切片的翻转实现字符的翻转；</p>
+<p>② 慢指针为start，快指针等于start+k，慢指针每次移动2k长度</p>
+<h3 id="python源码"><a href="#python源码" class="headerlink" title="python源码"></a>python源码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">solution</span>(<span class="params">s: <span class="built_in">str</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    start, s_len = <span class="number">0</span>, <span class="built_in">len</span>(s)</span><br><span class="line">    <span class="keyword">while</span> start &lt; s_len:</span><br><span class="line">        end = start + k</span><br><span class="line">        s = s[:start] + s[start:end][::-<span class="number">1</span>] + s[end:]</span><br><span class="line">        start += <span class="number">2</span> * k</span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -179,7 +266,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-04 09:32:03" itemprop="dateModified" datetime="2023-08-04T09:32:03+08:00">2023-08-04</time>
+      <time title="修改时间：2023-08-07 13:24:00" itemprop="dateModified" datetime="2023-08-07T13:24:00+08:00">2023-08-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -205,7 +292,7 @@
 <p>注意：magazine中的每个字符只能在ransom中出现一次。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>1、将magazine字符串中所出现的字符放入字典中，key为字符，value为该字符出现的次数</p>
 <p>2、验证字典中字符是否已覆盖赎金信的字符，逐个获取赎金信的字符，找到字典中对应key的value并-1，出现某个value&lt;0时则说明magazine无法构成ransom。</p>
-<h3 id="python源码"><a href="#python源码" class="headerlink" title="python源码"></a>python源码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">from collections import defaultdict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def solution(ransom: str, magazine: str) -&gt; bool:</span><br><span class="line">    # 这里也可以用数组或者dict</span><br><span class="line">    magazine_map = defaultdict(int)</span><br><span class="line">    for c in magazine:</span><br><span class="line">        magazine_map[c] += 1</span><br><span class="line">    for c in ransom:</span><br><span class="line">        value = magazine_map.get(c)</span><br><span class="line">        if not value or value == 0:</span><br><span class="line">            return False</span><br><span class="line">        magazine_map[c] = value - 1</span><br><span class="line">    return True</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="python源码"><a href="#python源码" class="headerlink" title="python源码"></a>python源码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">solution</span>(<span class="params">ransom: <span class="built_in">str</span>, magazine: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="comment"># 这里也可以用数组或者dict</span></span><br><span class="line">    magazine_map = defaultdict(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> magazine:</span><br><span class="line">        magazine_map[c] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> ransom:</span><br><span class="line">        value = magazine_map.get(c)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> value <span class="keyword">or</span> value == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        magazine_map[c] = value - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -268,7 +355,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-04 09:32:04" itemprop="dateModified" datetime="2023-08-04T09:32:04+08:00">2023-08-04</time>
+      <time title="修改时间：2023-08-07 13:24:27" itemprop="dateModified" datetime="2023-08-07T13:24:27+08:00">2023-08-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -294,7 +381,7 @@
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>不需要进行去重，是使用哈希法的经典题目</p>
 <p>1、定义一个字典，用来保存A、B两个数组相加的结果；key为相加得到的结果，value为该结果出现的次数</p>
 <p>2、遍历B、C两个数组相加的结果，如果0-(C+D)如果在map中出现过，使用count累加key对应的value</p>
-<h3 id="python源码"><a href="#python源码" class="headerlink" title="python源码"></a>python源码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">from typing import List</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def solution(nums_a: List[int], nums_b: List[int], nums_c: List[int], nums_d: List[int]) -&gt; int:</span><br><span class="line">    count = 0</span><br><span class="line">    tmp_result = dict()</span><br><span class="line">    for i in nums_a:</span><br><span class="line">        for j in nums_b:</span><br><span class="line">            result = i + j</span><br><span class="line">            tmp_result[result] = tmp_result.get(result, 0) + 1</span><br><span class="line">    for i in nums_c:</span><br><span class="line">        for j in nums_d:</span><br><span class="line">            result = 0 - (i + j)</span><br><span class="line">            count += tmp_result.get(result, 0)</span><br><span class="line">    return count</span><br></pre></td></tr></table></figure>
+<h3 id="python源码"><a href="#python源码" class="headerlink" title="python源码"></a>python源码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">solution</span>(<span class="params">nums_a: <span class="type">List</span>[<span class="built_in">int</span>], nums_b: <span class="type">List</span>[<span class="built_in">int</span>], nums_c: <span class="type">List</span>[<span class="built_in">int</span>], nums_d: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    tmp_result = <span class="built_in">dict</span>()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nums_a:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> nums_b:</span><br><span class="line">            result = i + j</span><br><span class="line">            tmp_result[result] = tmp_result.get(result, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> nums_c:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> nums_d:</span><br><span class="line">            result = <span class="number">0</span> - (i + j)</span><br><span class="line">            count += tmp_result.get(result, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
 
       
     </div>
