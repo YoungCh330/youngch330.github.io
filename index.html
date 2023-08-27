@@ -112,12 +112,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span>
       </div>
   </nav>
@@ -134,6 +134,111 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://youngch330.github.io/2023/08/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Young">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Young's 博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Young's 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">正则表达式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-22 22:51:23" itemprop="dateCreated datePublished" datetime="2023-08-22T22:51:23+08:00">2023-08-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-27 15:06:07" itemprop="dateModified" datetime="2023-08-27T15:06:07+08:00">2023-08-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><ol>
+<li>用 <code>import re</code>导入正则表达式模块</li>
+<li>用 <code>re.compile()</code>函数创建一个Regex对象</li>
+<li>向Regex对象的 <code>search()</code>方法传入想要查找的字符串，它返回一个Match对象</li>
+<li>调用Match对象的 <code>group()</code>方法，返回实际匹配文本的字符串</li>
+</ol>
+<h3 id="常用匹配模式"><a href="#常用匹配模式" class="headerlink" title="常用匹配模式"></a>常用匹配模式</h3><ol>
+<li>利用括号进行分组，如 <code>r&#39;(\d&#123;3&#125;)-(\d&#123;8&#125;)&#39;</code>,group(1)返回第一组即为区号0755，group(2)返回实际电话号码88888888；</li>
+<li>通过使用管道字符’|’来匹配表达式中的一个，如 <code>r&#39;Batman|Tina Fay&#39;</code>表达式将匹配Batman或Tina Fay，第一次出现的文本将作为Match对象返回；</li>
+<li>使用管道来匹配多个模式中的一个，如 <code>r&#39;Bat(man|woman|bat|mobile)&#39;</code>将匹配Batman、Batwoman、Batbat中的任意一个；</li>
+<li>字符?表明它前面的分组是可选（0次或一次）的，如 <code>r&#39;Bat(wo)?man&#39;</code>打标wo可出现0次或1次，该表达式可匹配Batman和Batwoman；</li>
+<li>字符*表明它前面的分组可匹配0次或多次，可参考字符?的用法；</li>
+<li>字符+表明它前面的分组可匹配1次或多次，可参考字符?的用法；</li>
+<li>用{3}、{3，5}、{3，}、{，5}匹配指定次数，可参考字符?的用法；</li>
+<li>python的正则表达式默认是贪心匹配，即 <code>Ha&#123;3，5&#125;</code>尽可能匹配到长的字符；如果需要实现非贪心匹配，需要调整为 <code>Ha&#123;3,5&#125;?</code>；</li>
+<li>findAll()方法：如果在一个没有分组的表达式上调用，返回一个匹配字符串的列表；如果在有分组的表达式上调用，返回一个字符串的元组的列表；</li>
+<li>使用方括号建立自己的字符分类，如 <code>[aeiouAEIOU]</code>将匹配所有的元音字符，且不区分大小写；在方括号类，普通的正则表达式不会被解释；在左方括号后插入字符^代表取非；</li>
+<li>在正则表达式开始处插入符号(^)表明匹配必须发生在被查找文本开始出，在结尾出插入符号($)表明字符串必须以这个正则表达式的模式结束；</li>
+<li>通配字符：.(句点)匹配除换行符以外的所有字符，通过 <code>re.compile()</code>第二个参数传入re.DOTALL可使用句点匹配换行符；</li>
+<li>使用 <code>sub()</code>函数可替换正则表达式匹配到的模式;</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
