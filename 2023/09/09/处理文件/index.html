@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"youngch330.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="读取excel 调用 openpyxl.load_workbook()函数取得WorkBook对象； 调用 workbook.active()或sheetnames属性取得WorkSheet对象； 使用索引或工作表的 cell()方法，带上row和column关键字参数取得Cell对象； 读取cell的value属性，value会自动转化为对应的整数、字符串、日期类型title；  写入excel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="处理文件">
+<meta property="og:url" content="https://youngch330.github.io/2023/09/09/%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Young&#39;s 博客">
+<meta property="og:description" content="读取excel 调用 openpyxl.load_workbook()函数取得WorkBook对象； 调用 workbook.active()或sheetnames属性取得WorkSheet对象； 使用索引或工作表的 cell()方法，带上row和column关键字参数取得Cell对象； 读取cell的value属性，value会自动转化为对应的整数、字符串、日期类型title；  写入excel">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-09T14:39:03.000Z">
+<meta property="article:modified_time" content="2023-09-25T15:54:25.799Z">
+<meta property="article:author" content="Young">
+<meta property="article:tag" content="Java,Python,算法,读书笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://youngch330.github.io/2023/09/09/%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://youngch330.github.io/2023/09/09/%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6/","path":"2023/09/09/处理文件/","title":"处理文件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>处理文件 | Young's 博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Young's 博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">心之所向，行必能至</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96excel"><span class="nav-number">1.</span> <span class="nav-text">读取excel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%85%A5excel"><span class="nav-number">2.</span> <span class="nav-text">写入excel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96excel%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">其他excel操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9Cpdf%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">操作pdf文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86csv%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">处理csv文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86JSON"><span class="nav-number">6.</span> <span class="nav-text">处理JSON</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Young</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://youngch330.github.io/2023/09/09/%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Young">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Young's 博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="处理文件 | Young's 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          处理文件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-09-09 22:39:03" itemprop="dateCreated datePublished" datetime="2023-09-09T22:39:03+08:00">2023-09-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-25 23:54:25" itemprop="dateModified" datetime="2023-09-25T23:54:25+08:00">2023-09-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="读取excel"><a href="#读取excel" class="headerlink" title="读取excel"></a>读取excel</h3><ol>
+<li>调用 <code>openpyxl.load_workbook()</code>函数取得WorkBook对象；</li>
+<li>调用 <code>workbook.active()</code>或sheetnames属性取得WorkSheet对象；</li>
+<li>使用索引或工作表的 <code>cell()</code>方法，带上row和column关键字参数取得Cell对象；</li>
+<li>读取cell的value属性，value会自动转化为对应的整数、字符串、日期类型title；</li>
+</ol>
+<h3 id="写入excel"><a href="#写入excel" class="headerlink" title="写入excel"></a>写入excel</h3><ol>
+<li>调用 <code>openpyxl.WorkBook()</code>创建一个空白的WorkBook对象；</li>
+<li>调用 <code>workbook.create_sheet(index=0,title=&#39;First Sheet&#39;)</code>创建一个WorkSheet对象；</li>
+<li>通过 <code>sheet[&#39;A1&#39;] = value</code>为指定单元格赋值；</li>
+<li>调用 <code>del workbook[&#39;sheet&#39;]</code>删除多余的工作表；</li>
+<li>调用workbook.save(‘Example.xlsx’)保存更改；</li>
+</ol>
+<h3 id="其他excel操作"><a href="#其他excel操作" class="headerlink" title="其他excel操作"></a>其他excel操作</h3><ol>
+<li>通过 <code>sheet[&#39;A1&#39;].font = Font(name = &#39;Calibri&#39;,bold = True,italic = True)</code>更改单元格的字体；</li>
+<li><code>sheet[&#39;B9&#39;] = &#39;=SUM(B1:B8)&#39;</code>可在单元格中添加公式；</li>
+<li><code>sheet.row_dimensions[1].height = 20</code>和 <code>sheet.column_dimensions[&#39;B&#39;].wight = 70</code>可设置行高和列宽；</li>
+<li><code>sheet.merge_cells(&#39;A1:D3&#39;)</code>可合并单元格；<code>sheet.unmerge_cells(&#39;A1:D3&#39;)</code>可拆分单元格；</li>
+<li><code>sheet.freeze_panes = &#39;A2&#39;</code>可冻结第一行，<code>sheet.freeze_panes = None</code>可解除冻结；</li>
+</ol>
+<h3 id="操作pdf文件"><a href="#操作pdf文件" class="headerlink" title="操作pdf文件"></a>操作pdf文件</h3><ol>
+<li><code>PyPDF2.PdfFileReader(io)</code>将获得PdfReader对象，<code>pdfReader.getPage()</code>可获得指定页面，如果pdf有加密，则可以通过 <code>pdfReader.decrypt(&#39;password&#39;)</code>解密;</li>
+<li>PyPDF2并不能将任意文本写入pdf文档，仅限于从其他PDF中复制页面、旋转页面、重叠页面和加密文件；通过 <code>PyPDF2.PdfFileWriter(io)</code>可创建文件，<code>pdfWriter.addPage(page)</code>可从其他pdf复制页面，<code>page.rotateClockWise(90)</code>可旋转页面，<code>page.mergePage(page)</code>可重叠多个pdf页面以实现水印功能，<code>pdfWriter.encrypt(&#39;password&#39;)</code>可加密pdf文件；</li>
+</ol>
+<h3 id="处理csv文件"><a href="#处理csv文件" class="headerlink" title="处理csv文件"></a>处理csv文件</h3><ol>
+<li><code>open()</code>打开文件，<code>csv.reader(file)</code>可返回csv文件的reader对象，可使用 <code>reader[0][0]</code>来获取指定位置的值，使用 <code> for row in reader</code>来遍历csv的每一行，注意reader对象只能遍历一次；</li>
+<li><code>open(str,&#39;w&#39;)</code>打开文件,<code>cvs.writer(file)</code>可返回csv的writer对象，使用 <code>writer.writerRow(list)</code>来逐步写入行，最后调用 <code>file.close()</code>方法结束；</li>
+<li>创建reader和writer对象时，可传入delimiter和lineterminator来指定分隔符和换行符；</li>
+<li>如果需要处理含标题的csv文件，使用DictReader和DictWriter来替代Reader和Writer即可；为避免csv文件中没有标题行，可直接在DictReader第二个参数传入list作为标题；</li>
+</ol>
+<h3 id="处理JSON"><a href="#处理JSON" class="headerlink" title="处理JSON"></a>处理JSON</h3><ol>
+<li><code>json.loads(jsonstr)</code>将json字符串转为一个python字典，<code>json.dumps(dict)</code>可将python字典转为json字符串；</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/08/%E4%BB%8E%E7%BD%91%E9%A1%B5%E6%8A%93%E5%8F%96%E4%BF%A1%E6%81%AF/" rel="prev" title="从网页抓取信息">
+                  <i class="fa fa-angle-left"></i> 从网页抓取信息
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/09/13/%E6%97%B6%E9%97%B4%E5%92%8C%E5%AE%9A%E6%97%B6%E5%99%A8/" rel="next" title="时间和定时器">
+                  时间和定时器 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Young</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
