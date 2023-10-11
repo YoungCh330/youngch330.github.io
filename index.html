@@ -230,7 +230,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-10 15:17:29" itemprop="dateModified" datetime="2023-10-10T15:17:29+08:00">2023-10-10</time>
+      <time title="修改时间：2023-10-11 10:21:50" itemprop="dateModified" datetime="2023-10-11T10:21:50+08:00">2023-10-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -302,8 +302,71 @@
 
 <h3 id="累计与分组"><a href="#累计与分组" class="headerlink" title="累计与分组"></a>累计与分组</h3><ol>
 <li>DataFrame默认对每列进行统计，设置 <code>axis=&#39;columns&#39;</code>可对每一行进行统计；</li>
-<li></li>
+<li>pandas内置的累计方法：</li>
 </ol>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>count()</td>
+<td>计数项</td>
+</tr>
+<tr>
+<td>first()、last()</td>
+<td>第一项和最后一项</td>
+</tr>
+<tr>
+<td>mean()、median()</td>
+<td>均值、中位数</td>
+</tr>
+<tr>
+<td>min()、max()</td>
+<td>最小值和最大值</td>
+</tr>
+<tr>
+<td>std()、var()</td>
+<td>标准差和方差</td>
+</tr>
+<tr>
+<td>mad()</td>
+<td>均值绝对偏差</td>
+</tr>
+<tr>
+<td>prod()</td>
+<td>所有项乘积</td>
+</tr>
+<tr>
+<td>sum()</td>
+<td>所有项之和</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>groupby的过程：分割、应用和组合，groupby的中间分割过程不需要显示的暴露出来；<ul>
+<li>分割步骤将DataFrame按照指定的键分割成若干组；</li>
+<li>应用步骤对每个组应用函数，通常是累计、转换或过滤函数；</li>
+<li>组合步骤将每一组的结果合并成一个输出数组；</li>
+</ul>
+</li>
+<li>GroupBy对象的累计、过滤、转换和应用：<ul>
+<li>aggregate()方法支持一次进行多个累计运算，如 <code>data.groupby(&#39;key&#39;).aggregate(np.sum,np.min,np.mean)</code>；也可以指定不同的列使用不同的累计函数，如 <code>data.groupby(&#39;key&#39;).aggregate(&#123;&#39;column1&#39;:np.sum,&#39;column2&#39;:np.mean&#125;)</code>；</li>
+<li>filter支持过滤掉不需要的数据，如 <code>data.groupby(&#39;key&#39;).filter(filter_func)</code>，其中filter_func的入参是分组，出参是该分组是否通过过滤；</li>
+<li>转换会返回一个与原数据形状一样的全新数据，常用来将标准数据减去均值以实现数据标准化，如 <code>data.groupby(&#39;key&#39;).transfrom(lambda x : x - x.mean())</code>；</li>
+<li>apply方法可以在分组上应用任意方法，方法的入参是DataFrame，出参则是一个pandas对象(DataFrame或Series)；</li>
+</ul>
+</li>
+<li>分组的方法：<ul>
+<li>列表、数组、Series 或索引作为分组键，<code>df.groupby([0,1,2,0,1,0]).sum()</code>；</li>
+<li>字典或 Series 将索引映射到分组名称，<code>df.groupby(&#123;&#39;A&#39;:&#39;China&#39;,&#39;B&#39;:&#39;USA&#39;&#125;).sum()</code></li>
+<li>任意python函数,<code>df.groupby(str.lower).mean()</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="数据透视表"><a href="#数据透视表" class="headerlink" title="数据透视表"></a>数据透视表</h3><p>数据透视表将每一列数据作为输入，输出将数据不断细分成多个维度累计信息的二维数据表，像一种多维的GroupBy累计操作；数据透视表的完整签名为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataFrame.pivot_table(data, values=<span class="literal">None</span>,index=<span class="literal">None</span>, columns=<span class="literal">None</span>,aggfunc=<span class="string">&#x27;mean&#x27;</span>, fill_value=<span class="literal">None</span>,margins=<span class="literal">False</span>,dropna=<span class="literal">True</span>,margins_name=<span class="string">&#x27;All&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
       
     </div>
