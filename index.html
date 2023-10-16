@@ -230,7 +230,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-11 10:21:50" itemprop="dateModified" datetime="2023-10-11T10:21:50+08:00">2023-10-11</time>
+      <time title="修改时间：2023-10-16 23:17:14" itemprop="dateModified" datetime="2023-10-16T23:17:14+08:00">2023-10-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -367,6 +367,116 @@
 </ol>
 <h3 id="数据透视表"><a href="#数据透视表" class="headerlink" title="数据透视表"></a>数据透视表</h3><p>数据透视表将每一列数据作为输入，输出将数据不断细分成多个维度累计信息的二维数据表，像一种多维的GroupBy累计操作；数据透视表的完整签名为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataFrame.pivot_table(data, values=<span class="literal">None</span>,index=<span class="literal">None</span>, columns=<span class="literal">None</span>,aggfunc=<span class="string">&#x27;mean&#x27;</span>, fill_value=<span class="literal">None</span>,margins=<span class="literal">False</span>,dropna=<span class="literal">True</span>,margins_name=<span class="string">&#x27;All&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="向量化字符串操作"><a href="#向量化字符串操作" class="headerlink" title="向量化字符串操作"></a>向量化字符串操作</h3><ol>
+<li>Pandas为包含字符串的Series和Index对象提供的str属性可以满足向量化字符串操作的需求，也可以正确的处理缺失值；</li>
+<li>pandas中可使用的字符串向量方法：<ul>
+<li>与python字符串类似的方法：data.str.len()、data.str.lower()等</li>
+<li>使用正则表达式方法，data.str.match()、data.str.findall(r’’)等</li>
+<li>其他如get()、slice()等字符串方法</li>
+</ul>
+</li>
+</ol>
+<h3 id="处理时间序列"><a href="#处理时间序列" class="headerlink" title="处理时间序列"></a>处理时间序列</h3><ol>
+<li><p>Pandas 用来处理时间序列的基础数据类型：</p>
+<ul>
+<li>针对时间戳数据，Pandas提供了Timestamp类型；基于numpy的datetime64类型创建，对应的索引类型为DatetimeIndex；</li>
+<li>针对时间周期数据，Pandas提供了Period类型；对应的索引类型为PeriodIndex，任何DatetimeIndex均可通过to_period转为PeriodIndex；</li>
+<li>针对时间增量或持续时间，Pandas提供了Timedelta类型；基于numpy的timedelta64类型创建，对应的索引数据结构是TimedeltaIndex；用一个日期减去另一个日期时，返回的结果是 **TimedeltaIndex类型</li>
+</ul>
+</li>
+<li><p>通过 <code>pd.date_range(&#39;2020-01-01&#39;,preiod=8,freq=&#39;D&#39;)、pd.period_range(&#39;2015-07&#39;, periods=8, freq=&#39;M&#39;)、pd.timedelta_range(0, periods=10, freq=&#39;H&#39;)</code>来快速创建时间序列；</p>
+</li>
+<li><p>pandas时间频率和偏移量代码：</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>描述</th>
+<th>代码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D</td>
+<td>天</td>
+<td>BM</td>
+<td>月末(仅工作日)</td>
+</tr>
+<tr>
+<td>W</td>
+<td>周</td>
+<td>BQ</td>
+<td>季末(仅工作日)</td>
+</tr>
+<tr>
+<td>M</td>
+<td>月末</td>
+<td>BA</td>
+<td>年末(仅工作日)</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>季末</td>
+<td>BH</td>
+<td>小时，工作时间</td>
+</tr>
+<tr>
+<td>A</td>
+<td>年末</td>
+<td>MS</td>
+<td>月初</td>
+</tr>
+<tr>
+<td>H</td>
+<td>小时</td>
+<td>BMS</td>
+<td>月初，仅工作日</td>
+</tr>
+<tr>
+<td>T</td>
+<td>分钟</td>
+<td>QS</td>
+<td>季初</td>
+</tr>
+<tr>
+<td>S</td>
+<td>秒</td>
+<td>BQS</td>
+<td>季初，仅工作日</td>
+</tr>
+<tr>
+<td>L</td>
+<td>毫秒</td>
+<td>AS</td>
+<td>年初</td>
+</tr>
+<tr>
+<td>U</td>
+<td>微秒</td>
+<td>BAS</td>
+<td>年初，仅工作日</td>
+</tr>
+<tr>
+<td>N</td>
+<td>纳秒</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td>天(仅含工作日)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h3 id="高性能的eval"><a href="#高性能的eval" class="headerlink" title="高性能的eval()"></a>高性能的eval()</h3><ol>
+<li>numpy的复合代数式计算会在中间过程显示的分配内存，Numexpr在计算代数式时不需要为临时数组分配全部内存,<code>numexpr.evaluate(&#39;(x &gt; 0.5) &amp; (y &lt; 0.5)&#39;)</code>；</li>
+<li><code>pandas.eval(&#39;d1+d2+d3+d4&#39;)</code>支持算术运算符、比较运算符、位运算符、对象属性与索引；其他如函数调用、条件语句、循环及更复杂的运算可通过numexpr来实现；</li>
+<li><code>df.eval(&#39;D = (A+B)/C&#39;)</code>支持新增列、局部变量(使用@符号)；<code>df.query(&#39;A&gt;0.5 &amp; B &lt; 0.4&#39;)</code>支持过滤运算，也支持使用局部变量；</li>
+</ol>
 
       
     </div>
