@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"youngch330.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"remove","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题目描述给你一个字符串s ，请你反转字符串中单词的顺序。单词是由非空格字符组成的字符串， s中使用至少一个空格将字符串中的单词分隔开， 返回单词顺序颠倒且单词之间用单个空格连接的结果字符串。 注意： 输入字符串s中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。 解题思路双指针的解题思路 1、fast、slow从后往前走，s">
+    <meta name="description" content="题目描述 给你一个字符串s ，请你反转字符串中单词的顺序。单词是由非空格字符组成的字符串， s中使用至少一个空格将字符串中的单词分隔开， 返回单词顺序颠倒且单词之间用单个空格连接的结果字符串。 注意： 输入字符串s中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。 解题思路 双指针的解题思路 1、fast、slow从后往前走">
 <meta property="og:type" content="article">
 <meta property="og:title" content="翻转字符串里的单词">
 <meta property="og:url" content="https://youngch330.github.io/2023/08/08/%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%87%8C%E7%9A%84%E5%8D%95%E8%AF%8D/index.html">
 <meta property="og:site_name" content="Young&#39;s 博客">
-<meta property="og:description" content="题目描述给你一个字符串s ，请你反转字符串中单词的顺序。单词是由非空格字符组成的字符串， s中使用至少一个空格将字符串中的单词分隔开， 返回单词顺序颠倒且单词之间用单个空格连接的结果字符串。 注意： 输入字符串s中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。 解题思路双指针的解题思路 1、fast、slow从后往前走，s">
+<meta property="og:description" content="题目描述 给你一个字符串s ，请你反转字符串中单词的顺序。单词是由非空格字符组成的字符串， s中使用至少一个空格将字符串中的单词分隔开， 返回单词顺序颠倒且单词之间用单个空格连接的结果字符串。 注意： 输入字符串s中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。 解题思路 双指针的解题思路 1、fast、slow从后往前走">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-08T14:07:18.000Z">
 <meta property="article:modified_time" content="2023-09-26T06:57:38.198Z">
@@ -167,15 +167,21 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个字符串s ，请你反转字符串中单词的顺序。单词是由非空格字符组成的字符串， s中使用至少一个空格将字符串中的单词分隔开，</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="题目描述">题目描述</h3>
+<p>给你一个字符串s
+，请你反转字符串中单词的顺序。单词是由非空格字符组成的字符串，
+s中使用至少一个空格将字符串中的单词分隔开，</p>
 <p>返回单词顺序颠倒且单词之间用单个空格连接的结果字符串。</p>
-<p><strong>注意：</strong> 输入字符串s中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>双指针的解题思路</p>
+<p><strong>注意：</strong>
+输入字符串s中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。</p>
+<h3 id="解题思路">解题思路</h3>
+<p>双指针的解题思路</p>
 <p>1、fast、slow从后往前走，slow和fast的起点是非空格字符，fast逐步往前找到空格，此时s[fast,slow]就是一个单词</p>
 <p>2、slow继续往前，直到slow碰到非空格，则开始下一个循环</p>
 <p><strong>注意：</strong>题目要求的是翻转单词，而不是翻转字符</p>
 <p>如果是翻转字符应该是从前往后，而翻转单词应该是从后往前，可以想想为什么</p>
-<h3 id="python源码"><a href="#python源码" class="headerlink" title="python源码"></a>python源码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">solution</span>(<span class="params">s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    res = []</span><br><span class="line">    slow, fast = <span class="built_in">len</span>(s) - <span class="number">1</span>, <span class="built_in">len</span>(s) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> slow &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27; &#x27;</span> == s[slow]:</span><br><span class="line">            slow -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="string">&#x27; &#x27;</span> == s[fast]:</span><br><span class="line">            res.append(s[fast + <span class="number">1</span>:slow + <span class="number">1</span>])</span><br><span class="line">            slow = fast - <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> fast == <span class="number">0</span>:</span><br><span class="line">            res.append(s[fast:slow + <span class="number">1</span>])</span><br><span class="line">            slow = fast - <span class="number">1</span></span><br><span class="line">        fast -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(res)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="python源码">python源码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">solution</span>(<span class="params">s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    res = []</span><br><span class="line">    slow, fast = <span class="built_in">len</span>(s) - <span class="number">1</span>, <span class="built_in">len</span>(s) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> slow &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27; &#x27;</span> == s[slow]:</span><br><span class="line">            slow -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="string">&#x27; &#x27;</span> == s[fast]:</span><br><span class="line">            res.append(s[fast + <span class="number">1</span>:slow + <span class="number">1</span>])</span><br><span class="line">            slow = fast - <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> fast == <span class="number">0</span>:</span><br><span class="line">            res.append(s[fast:slow + <span class="number">1</span>])</span><br><span class="line">            slow = fast - <span class="number">1</span></span><br><span class="line">        fast -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(res)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -255,7 +261,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

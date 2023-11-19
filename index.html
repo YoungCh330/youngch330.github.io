@@ -157,7 +157,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="分类算法"><a href="#分类算法" class="headerlink" title="分类算法"></a>分类算法</h3>
+          <h3 id="分类算法">分类算法</h3>
+
       
     </div>
 
@@ -241,18 +242,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>线性回归函数如下，其中w代表斜率，b代表截距；<br>$$ f_{w,b}(x^{(i)}) &#x3D; wx^{(i)} + b $$</p>
-<h3 id="成本函数"><a href="#成本函数" class="headerlink" title="成本函数"></a>成本函数</h3><p>$$J(w,b) &#x3D; \frac{1}{2m} \sum\limits_{i &#x3D; 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 $$ </p>
-<ul>
-<li>成本函数的关键是找到一个w和b，使得成本函数在训练集上的值最小或接近最小；</li>
-<li>其中$f_{w,b}(x^{(i)})$为预测值，$(f_{w,b}(x^{(i)}) -y^{(i)})^2$为预测值和目标值之差的平方；</li>
-</ul>
-<h3 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h3><p>梯度下降算法如下：<br>$$\begin{align*} \text{repeat}&amp;\text{ until convergence:} ; \lbrace \newline<br>;  w &amp;&#x3D; w -  \alpha \frac{\partial J(w,b)}{\partial w} ; \newline<br> b &amp;&#x3D; b -  \alpha \frac{\partial J(w,b)}{\partial b}  \newline \rbrace<br>\end{align*}$$<br>当参数w和b变化时，梯度算法实际上是求偏导数:<br>$$<br>\begin{align}<br>\frac{\partial J(w,b)}{\partial w}  &amp;&#x3D; \frac{1}{m} \sum\limits_{i &#x3D; 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})x^{(i)} ;\newline<br>\frac{\partial J(w,b)}{\partial b}  &amp;&#x3D; \frac{1}{m} \sum\limits_{i &#x3D; 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)}) \newline<br>\end{align}<br>$$</p>
-<h3 id="使用scikit-learn实现线性回归"><a href="#使用scikit-learn实现线性回归" class="headerlink" title="使用scikit-learn实现线性回归"></a>使用scikit-learn实现线性回归</h3><ol>
+          <h3 id="线性回归">线性回归</h3>
+<p>线性回归函数如下，其中w代表斜率，b代表截距； <span
+class="math display">\[ f_{w,b}(x^{(i)}) = wx^{(i)} + b \]</span></p>
+<h3 id="成本函数">成本函数</h3>
+<p><span class="math display">\[J(w,b) = \frac{1}{2m} \sum\limits_{i =
+0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 \]</span> -
+成本函数的关键是找到一个w和b，使得成本函数在训练集上的值最小或接近最小；
+- 其中<span
+class="math inline">\(f_{w,b}(x^{(i)})\)</span>为预测值，<span
+class="math inline">\((f_{w,b}(x^{(i)})
+-y^{(i)})^2\)</span>为预测值和目标值之差的平方；</p>
+<h3 id="梯度下降算法">梯度下降算法</h3>
+<p>梯度下降算法如下： <span class="math display">\[\begin{align*}
+\text{repeat}&amp;\text{ until convergence:} \; \lbrace \newline
+\;  w &amp;= w -  \alpha \frac{\partial J(w,b)}{\partial w} \; \newline
+b &amp;= b -  \alpha \frac{\partial J(w,b)}{\partial b}  \newline
+\rbrace
+\end{align*}\]</span> 当参数w和b变化时，梯度算法实际上是求偏导数: <span
+class="math display">\[
+\begin{align}
+\frac{\partial J(w,b)}{\partial w}  &amp;= \frac{1}{m} \sum\limits_{i =
+0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})x^{(i)} \;\newline
+\frac{\partial J(w,b)}{\partial b}  &amp;= \frac{1}{m} \sum\limits_{i =
+0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)}) \newline
+\end{align}
+\]</span></p>
+<h3 id="使用scikit-learn实现线性回归">使用scikit-learn实现线性回归</h3>
+<ol type="1">
 <li>加载数据</li>
 <li>归一化处理：<code>StandardScaler.fit_transform(X_train)</code></li>
-<li>拟合回归模型，获取参数w和b<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sgdr = SGDRegressor(max_iter=1000)</span><br><span class="line">sgdr.fit(X_norm, y_train)</span><br><span class="line">b_norm = sgdr.intercept_</span><br><span class="line">w_norm = sgdr.coef_</span><br></pre></td></tr></table></figure></li>
-<li>执行预测<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgdr.predict(X_norm)</span><br></pre></td></tr></table></figure></li>
+<li>拟合回归模型，获取参数w和b <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sgdr = SGDRegressor(max_iter=1000)</span><br><span class="line">sgdr.fit(X_norm, y_train)</span><br><span class="line">b_norm = sgdr.intercept_</span><br><span class="line">w_norm = sgdr.coef_</span><br></pre></td></tr></table></figure></li>
+<li>执行预测 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgdr.predict(X_norm)</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -338,108 +359,124 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="线形图"><a href="#线形图" class="headerlink" title="线形图"></a>线形图</h3><ol>
-<li>简单线形图的步骤,其中figure代表一个图形实例，ax表示一个坐标轴实例；<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure()</span><br><span class="line">ax = plt.axes()</span><br><span class="line">ax.plot(x,np.sin(x))</span><br></pre></td></tr></table></figure></li>
-<li>调整线条的颜色与风格<ul>
-<li><code>plt.plot(x,np.sin(x),color=&#39;blue&#39;)</code>,颜色支持标准颜色、颜色缩写、16进制、RGB颜色、范围在[0,1]的灰度值等；</li>
-<li><code>plt.plot(x,np.sin(x),linestyle=&#39;-&#39;)</code>,调整线条的风格，包含实线(-)、虚线(–)、点划线(-.)、实点线(:)；</li>
-</ul>
-</li>
-<li>调整坐标轴的上下限<ul>
-<li><code>plt.xlim(-1,1)</code>、<code>plt.ylim(-1,1)</code>和<code>plt.axis([xmin,xmax,ymin,ymax])</code> 可调整坐标轴的上下限;</li>
-<li><code>plt.axis(&#39;tight&#39;)</code>可以按照图形内容自动收紧坐标轴；</li>
-<li><code>plt.axis(&#39;equal&#39;)</code>可以让xy轴的单位长度相等；</li>
-</ul>
-</li>
-<li>设置图形标签<ul>
-<li><code>plt.title(&quot;Title&quot;)</code>可设置图形标题；</li>
-<li><code>plt.xlable(&quot;title&quot;)</code>和<code>plt.ylable(&#39;title&#39;)</code>可设置坐标轴标题；</li>
-<li><code>plt.plot(x,sin(x),label=&#39;sin(x)&#39;)</code>为每条线设置标签；</li>
-</ul>
-</li>
+          <h3 id="线形图">线形图</h3>
+<ol type="1">
+<li>简单线形图的步骤,其中figure代表一个图形实例，ax表示一个坐标轴实例；
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure()</span><br><span class="line">ax = plt.axes()</span><br><span class="line">ax.plot(x,np.sin(x))</span><br></pre></td></tr></table></figure></li>
+<li>调整线条的颜色与风格
+<ul>
+<li><code>plt.plot(x,np.sin(x),color='blue')</code>,颜色支持标准颜色、颜色缩写、16进制、RGB颜色、范围在[0,1]的灰度值等；</li>
+<li><code>plt.plot(x,np.sin(x),linestyle='-')</code>,调整线条的风格，包含实线(-)、虚线(--)、点划线(-.)、实点线(:)；</li>
+</ul></li>
+<li>调整坐标轴的上下限
+<ul>
+<li><code>plt.xlim(-1,1)</code>、<code>plt.ylim(-1,1)</code>和<code>plt.axis([xmin,xmax,ymin,ymax])</code>
+可调整坐标轴的上下限;</li>
+<li><code>plt.axis('tight')</code>可以按照图形内容自动收紧坐标轴；</li>
+<li><code>plt.axis('equal')</code>可以让xy轴的单位长度相等；</li>
+</ul></li>
+<li>设置图形标签
+<ul>
+<li><code>plt.title("Title")</code>可设置图形标题；</li>
+<li><code>plt.xlable("title")</code>和<code>plt.ylable('title')</code>可设置坐标轴标题；</li>
+<li><code>plt.plot(x,sin(x),label='sin(x)')</code>为每条线设置标签；</li>
+</ul></li>
 </ol>
-<h3 id="简易散点图"><a href="#简易散点图" class="headerlink" title="简易散点图"></a>简易散点图</h3><ol>
-<li><code>plt.plot(x,sin(x),&#39;o&#39;)</code>创建散点图</li>
+<h3 id="简易散点图">简易散点图</h3>
+<ol type="1">
+<li><code>plt.plot(x,sin(x),'o')</code>创建散点图</li>
 <li><code>plt.scatter(x,sin(x),c=colors,s=sizes,alpha=0.3)</code>也可创建散点图，可以单独为每个点设置大小和颜色，数据量较大时性能比plot差；</li>
 </ol>
-<h3 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h3><ol>
-<li><code>plt.hist(data, bins=30, normed=True, alpha=0.5,histtype=&#39;stepfilled&#39;, color=&#39;steelblue&#39;,edgecolor=&#39;none&#39;);</code>创建直方图</li>
+<h3 id="直方图">直方图</h3>
+<ol type="1">
+<li><code>plt.hist(data, bins=30, normed=True, alpha=0.5,histtype='stepfilled', color='steelblue',edgecolor='none');</code>创建直方图</li>
 </ol>
-<h3 id="子图"><a href="#子图" class="headerlink" title="子图"></a>子图</h3><ol>
+<h3 id="子图">子图</h3>
+<ol type="1">
 <li><code>figure.add_axes</code>可以一个图内创建多个坐标轴；</li>
 <li><code>plt.subplot</code>在网格中创建多个子图，<code>fig.subplots_adjust(hspace=0.4, wspace=0.4)</code>可以设置多个子图的间隔；</li>
-<li><code>fig, ax = plt.subplots(2, 3, sharex=&#39;col&#39;, sharey=&#39;row&#39;)</code>可以一次创建多个子图；</li>
+<li><code>fig, ax = plt.subplots(2, 3, sharex='col', sharey='row')</code>可以一次创建多个子图；</li>
 </ol>
-<h3 id="刻度配置"><a href="#刻度配置" class="headerlink" title="刻度配置"></a>刻度配置</h3><ol>
+<h3 id="刻度配置">刻度配置</h3>
+<ol type="1">
 <li><code>ax.yaxis.set_major_locator(plt.NullLocator())</code>和<code>ax.yaxis.set_major_locator(plt.NullFormatter())</code></li>
 </ol>
 <table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 29%" />
+<col style="width: 23%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>定位器类</th>
 <th>描述</th>
 <th>格式生成器类</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>NullLocator</td>
 <td>无刻度</td>
 <td>NullFormatter</td>
 <td>刻度上无标签</td>
 </tr>
-<tr>
+<tr class="even">
 <td>FixedLocator</td>
 <td>刻度位置固定</td>
 <td>IndexFormatter</td>
 <td>将一组标签设置为字符串</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>IndexLocator</td>
 <td>用索引作为定位器</td>
 <td>FixedFormatter</td>
 <td>手动为刻度设置标签</td>
 </tr>
-<tr>
+<tr class="even">
 <td>LinearLocator</td>
 <td>从min到max均匀分布刻度</td>
 <td>FuncFormatter</td>
 <td>用自定义函数设置标签</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>LogLocator</td>
 <td>从min到max按对数分布刻度</td>
 <td>FormatStrFormatter</td>
 <td>为每个刻度值设置字符串格式</td>
 </tr>
-<tr>
+<tr class="even">
 <td>MultipleLocator</td>
 <td>刻度和范围都是基数(base)的倍数</td>
 <td>ScalarFormatter</td>
 <td>(默认)为标量值设置标签</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>MaxNLocator</td>
 <td>为最大刻度找到最优位置</td>
 <td>LogFormatter</td>
 <td>对数坐标轴的默认格式生成器</td>
 </tr>
-<tr>
+<tr class="even">
 <td>AutoLocator</td>
 <td>(默认)以MaxNLocator进行简单配置</td>
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>AutoMinorLocator</td>
 <td>次要刻度的定位器</td>
 <td></td>
 <td></td>
 </tr>
-</tbody></table>
-<h3 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a>默认配置</h3><ol>
+</tbody>
+</table>
+<h3 id="默认配置">默认配置</h3>
+<ol type="1">
 <li>plt.rcParams可获得一个运行时配置，包含了图形元素的默认风格，可用plt.rc随时修改这个配置；</li>
-<li>plt.style获取matplotlib支持的样式表，通过<code>plt.style.use(&#39;stylename&#39;)</code>来切换风格；</li>
+<li>plt.style获取matplotlib支持的样式表，通过<code>plt.style.use('stylename')</code>来切换风格；</li>
 </ol>
 
       
@@ -519,7 +556,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="《爸爸忘记了》"><a href="#《爸爸忘记了》" class="headerlink" title="《爸爸忘记了》"></a>《爸爸忘记了》</h3><p>W.利文斯顿.拉尼徳</p>
+          <h3 id="爸爸忘记了">《爸爸忘记了》</h3>
+<p>W.利文斯顿.拉尼徳</p>
 <p>我想对你说，我的儿子：写下这些话时，你睡得正酣。你的小手放在脸蛋下面，弯曲的金发被汗水濡湿，紧贴着额头。我独自一人偷偷走进你的房间。几分钟之前，我在书房里读报时，强烈的懊悔折磨着我的内心。因此，这一刻，我歉疚地来到你的床边。</p>
 <p>这些事始终在我心头萦绕，我的儿子：我之前一直对你乱发脾气。上学之前你不好好洗脸，我骂了你；你不把鞋擦干净，我又数落你；你把东西乱丢，我对你大声嚷嚷。</p>
 <p>吃早餐时我也一直在挑你的毛病——你把饭洒了，你嚼得太快，你把胳膊肘放在桌子上，你面包上的黄油抹得太厚……你去玩的时候我正要出门赶火车，你转过身来，挥着小手对我喊：“爸爸再见！”我却紧皱眉头，以这句话回答你：“别驼背！”</p>
@@ -614,230 +652,180 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="核心对象"><a href="#核心对象" class="headerlink" title="核心对象"></a>核心对象</h3><ol>
-<li>Series是一个带索引数据构成的一堆数组，是一种将类型键映射到一组类型值的数据结构，通过 <code>pd.Series(data,index=index)</code>可创建一个Series对象；与numpy数组的区别在于numpy数组通过隐式定义的整数索引获取数值，而Series对象用一种显式定义的索引与数值关联；</li>
-<li>DataFrame 可以看作一种通用的 NumPy 二维数组，它的行与列都可以通过索引获取；DataFrame和Numpy二维数组的区别在于df[0]返回的是索引为0的列，而data[0]返回的是第一行；DataFrame可通过以下几种方式来创建：<ul>
-<li>通过单个Series创建: <code>df=pd.DataFrame(data,columns=[&#39;column&#39;])</code></li>
-<li>通过字典列表来创建：<code>df=pd.DataFrame([&#123;&#39;a&#39;:i,&#39;b&#39;:i*2&#125; for i in range(3)])</code></li>
-<li>通过多个Series对象字典创建： <code>df=pd.DataFrame(&#123;&#39;population&#39;:population,&#39;area&#39;:area&#125;)</code>，索引取并集，不存在的值使用NaN补齐；</li>
-<li>通过numpy二维数组创建：<code>df=pd.DataFrame(np.rand.random(3,2),columns=[&#39;foo&#39;,&#39;bar&#39;],index=[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;])</code></li>
-<li>通过numpy结构化数组创建：<code>df=pd.DataFrame(np.zeros(3,dtype=[(&#39;A&#39;,&#39;i8&#39;),(&#39;B&#39;,&#39;f8&#39;)]))</code></li>
-</ul>
-</li>
+          <h3 id="核心对象">核心对象</h3>
+<ol type="1">
+<li>Series是一个带索引数据构成的一堆数组，是一种将类型键映射到一组类型值的数据结构，通过
+<code>pd.Series(data,index=index)</code>可创建一个Series对象；与numpy数组的区别在于numpy数组通过隐式定义的整数索引获取数值，而Series对象用一种显式定义的索引与数值关联；</li>
+<li>DataFrame 可以看作一种通用的 NumPy
+二维数组，它的行与列都可以通过索引获取；DataFrame和Numpy二维数组的区别在于df[0]返回的是索引为0的列，而data[0]返回的是第一行；DataFrame可通过以下几种方式来创建：
+<ul>
+<li>通过单个Series创建:
+<code>df=pd.DataFrame(data,columns=['column'])</code></li>
+<li>通过字典列表来创建：<code>df=pd.DataFrame([&#123;'a':i,'b':i*2&#125; for i in range(3)])</code></li>
+<li>通过多个Series对象字典创建：
+<code>df=pd.DataFrame(&#123;'population':population,'area':area&#125;)</code>，索引取并集，不存在的值使用NaN补齐；</li>
+<li>通过numpy二维数组创建：<code>df=pd.DataFrame(np.rand.random(3,2),columns=['foo','bar'],index=['a','b','c'])</code></li>
+<li>通过numpy结构化数组创建：<code>df=pd.DataFrame(np.zeros(3,dtype=[('A','i8'),('B','f8')]))</code></li>
+</ul></li>
 <li>Index可以看作一个不可变数组或有序集合；</li>
 </ol>
-<h3 id="数据取值与选择"><a href="#数据取值与选择" class="headerlink" title="数据取值与选择"></a>数据取值与选择</h3><ol>
-<li>Series和字典一样提供了键值对的映射，如 <code>data.items()、data.keys()、x in data、data[x]</code>等操作；Series和numpy数组一样提供了切片 <code>data[1:3]</code>、掩码 <code>data[(data &gt; 0.8) &amp; (data &lt; 1)]</code>、花哨的索引 <code>data[[x,y]]</code>；当Series是显式整数索引时，使用data[1]和data[1:3]容易造成混淆，通过使用loc(直接使用整数索引形式的显示索引)和iloc(使用python形式的隐式索引)来代替；</li>
-<li>DataFrame类似于字典可通过 <code>data[&#39;column&#39;]</code>和 <code>data[&#39;column&#39;]=data[&#39;a&#39;]+data[&#39;b&#39;]</code>来获取和新增列；类似于数组，通过使用通过使用索引器loc(直接使用整数索引形式的显示索引)和iloc(使用python形式的隐式索引)来选择数据；</li>
+<h3 id="数据取值与选择">数据取值与选择</h3>
+<ol type="1">
+<li>Series和字典一样提供了键值对的映射，如
+<code>data.items()、data.keys()、x in data、data[x]</code>等操作；Series和numpy数组一样提供了切片
+<code>data[1:3]</code>、掩码
+<code>data[(data &gt; 0.8) &amp; (data &lt; 1)]</code>、花哨的索引
+<code>data[[x,y]]</code>；当Series是显式整数索引时，使用data[1]和data[1:3]容易造成混淆，通过使用loc(直接使用整数索引形式的显示索引)和iloc(使用python形式的隐式索引)来代替；</li>
+<li>DataFrame类似于字典可通过 <code>data['column']</code>和
+<code>data['column']=data['a']+data['b']</code>来获取和新增列；类似于数组，通过使用通过使用索引器loc(直接使用整数索引形式的显示索引)和iloc(使用python形式的隐式索引)来选择数据；</li>
 </ol>
-<h3 id="处理缺失值"><a href="#处理缺失值" class="headerlink" title="处理缺失值"></a>处理缺失值</h3><ol>
+<h3 id="处理缺失值">处理缺失值</h3>
+<ol type="1">
 <li>一般有两种方法：一种是通过一个覆盖全局的掩码表示缺失值，一种是用一个标签值表示缺失值；</li>
-<li>pandas选择使用标签方法表示缺失值：<ul>
-<li>None：由于None是一个python对象，只能用于’object’数组类型；</li>
+<li>pandas选择使用标签方法表示缺失值：
+<ul>
+<li>None：由于None是一个python对象，只能用于'object'数组类型；</li>
 <li>Nan：数值类型的缺失值，无论和Nan进行何种操作，最终结果都是Nan；</li>
 <li>通过isnull()、notnull()、dropna()、fillna()等方法来发现、剔除、替换数据结构中的缺失值；</li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h3 id="层级索引"><a href="#层级索引" class="headerlink" title="层级索引"></a>层级索引</h3><ol>
+<h3 id="层级索引">层级索引</h3>
+<ol type="1">
 <li>使用多级索引后，<code>data.unstack()</code>可以将Series转换为DataFrame，<code>data.stack()</code>可以将DataFrame转换为Series；</li>
-<li>创建多级索引的方法：<ul>
+<li>创建多级索引的方法：
+<ul>
 <li>将index参数设置为至少二维的索引数组；</li>
 <li>将元组作为键的字典传递给Pandas；</li>
 <li>使用pd.MultiIndex显示的创建多级索引，可以通过names属性设置等级名称；</li>
-</ul>
-</li>
-<li>在Series中使用层级索引，可直接参考数组的切片功能；在DataFrame中使用多级索引，最好使用IndexSlice以避免语法错误；<ul>
+</ul></li>
+<li>在Series中使用层级索引，可直接参考数组的切片功能；在DataFrame中使用多级索引，最好使用IndexSlice以避免语法错误；
+<ul>
 <li>层级索引需要有序，否则在调用时会报错，可使用data.sort_index()进行自动重排序；</li>
-</ul>
-</li>
-<li>针对层级索引调用数据累计方法时，可以设置level实现对数据子集的累计操作，如 <code>data.mean(level=&#39;year&#39;)</code>；</li>
+</ul></li>
+<li>针对层级索引调用数据累计方法时，可以设置level实现对数据子集的累计操作，如
+<code>data.mean(level='year')</code>；</li>
 </ol>
-<h3 id="合并数据集"><a href="#合并数据集" class="headerlink" title="合并数据集"></a>合并数据集</h3><ol>
+<h3 id="合并数据集">合并数据集</h3>
+<ol type="1">
 <li><code>pd.contact()</code>可以简单的合并Series和DataFrame对象，默认都是逐行进行合并的；</li>
-<li><code>pd.contact()</code>在合并时会保留重复索引，可设置verify_integrity&#x3D;True，合并时若有索引重复就会触发异常；设置ingore_index&#x3D;True，合并时会忽略原有索引，重新创建一个新的整数索引；可设置keys&#x3D;[‘A’,’B’]为数据源设置多级目标索引；</li>
-<li><code>pd.contact()</code>默认的合并方式是对所有数据取并集，对缺失的数据使用NaN表示，可设置join&#x3D;’inner’实现对输入列的交集合并；设置join_axes&#x3D;df.index直接确认结果使用的列名；</li>
+<li><code>pd.contact()</code>在合并时会保留重复索引，可设置verify_integrity=True，合并时若有索引重复就会触发异常；设置ingore_index=True，合并时会忽略原有索引，重新创建一个新的整数索引；可设置keys=['A','B']为数据源设置多级目标索引；</li>
+<li><code>pd.contact()</code>默认的合并方式是对所有数据取并集，对缺失的数据使用NaN表示，可设置join='inner'实现对输入列的交集合并；设置join_axes=df.index直接确认结果使用的列名；</li>
 <li><code>pd.merge()</code>可合并两个DataFrame，通过on指定合并的键值；如果需合并的键值名不一样时，可通过left_on和right_on来指定；通过设置how参数来指定使用内连接、左连接、右连接或外连接的形式；</li>
 <li>案例：如何获取美国各州的人口密度排名；</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">abb_data = pd.read_csv(<span class="string">&#x27;data/state-abbrevs.csv&#x27;</span>)</span><br><span class="line">area_data = pd.read_csv(<span class="string">&#x27;data/state-areas.csv&#x27;</span>)</span><br><span class="line">pop_data = pd.read_csv(<span class="string">&#x27;data/state-population.csv&#x27;</span>)</span><br><span class="line"><span class="comment">#首先合并数据</span></span><br><span class="line">merged = pop_data.merge(abb_data,how=<span class="string">&#x27;outer&#x27;</span>,left_on=<span class="string">&#x27;state/region&#x27;</span>,right_on=<span class="string">&#x27;abbreviation&#x27;</span>)</span><br><span class="line"><span class="comment">#去除多余的列</span></span><br><span class="line">merged = merged.drop(<span class="string">&#x27;abbreviation&#x27;</span>,axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#数据校验，去除空值</span></span><br><span class="line"><span class="built_in">print</span>(merged.isnull().<span class="built_in">any</span>())</span><br><span class="line"><span class="comment">#PR的人口缺失</span></span><br><span class="line"><span class="built_in">print</span>(merged[merged[<span class="string">&#x27;population&#x27;</span>].isnull()].head(<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(merged.loc[merged[<span class="string">&#x27;state&#x27;</span>].isnull(),<span class="string">&#x27;state/region&#x27;</span>].unique())</span><br><span class="line"><span class="comment">#两个问题：</span></span><br><span class="line"><span class="comment">#1、PR洲的人口数据缺失</span></span><br><span class="line"><span class="comment">#2、PR和USA没有对应的完整名称</span></span><br><span class="line">merged.loc[merged[<span class="string">&#x27;state/region&#x27;</span>] == <span class="string">&#x27;PR&#x27;</span>,<span class="string">&#x27;state&#x27;</span>]=<span class="string">&#x27;Puerto Rico&#x27;</span></span><br><span class="line">merged.loc[merged[<span class="string">&#x27;state/region&#x27;</span>] == <span class="string">&#x27;USA&#x27;</span>,<span class="string">&#x27;state&#x27;</span>]=<span class="string">&#x27;United States&#x27;</span></span><br><span class="line"><span class="comment">#合并面积数据</span></span><br><span class="line">final = merged.merge(area_data,on=<span class="string">&#x27;state&#x27;</span>,how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">final.isnull().<span class="built_in">any</span>()</span><br><span class="line"><span class="built_in">print</span>(final.loc[final[<span class="string">&#x27;area (sq. mi)&#x27;</span>].isnull(),<span class="string">&#x27;state&#x27;</span>].unique())</span><br><span class="line"><span class="comment">#这里删除全美的面积数据和缺失的人口数据</span></span><br><span class="line">final.dropna(inplace=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#查询2010年的数据，并计算人口密度</span></span><br><span class="line">data = final.query(<span class="string">&quot;year == 2010 &amp; ages == &#x27;total&#x27;&quot;</span>)</span><br><span class="line">data.set_index(<span class="string">&#x27;state&#x27;</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">density = data[<span class="string">&#x27;population&#x27;</span>]/data[<span class="string">&#x27;area (sq. mi)&#x27;</span>]</span><br><span class="line">density.sort_values(ascending=<span class="literal">False</span>,inplace=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(density.head())</span><br><span class="line"><span class="built_in">print</span>(density.tail())</span><br></pre></td></tr></table></figure>
-
-<h3 id="累计与分组"><a href="#累计与分组" class="headerlink" title="累计与分组"></a>累计与分组</h3><ol>
-<li>DataFrame默认对每列进行统计，设置 <code>axis=&#39;columns&#39;</code>可对每一行进行统计；</li>
+<h3 id="累计与分组">累计与分组</h3>
+<ol type="1">
+<li>DataFrame默认对每列进行统计，设置
+<code>axis='columns'</code>可对每一行进行统计；</li>
 <li>pandas内置的累计方法：</li>
 </ol>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>指标</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>count()</td>
 <td>计数项</td>
 </tr>
-<tr>
+<tr class="even">
 <td>first()、last()</td>
 <td>第一项和最后一项</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>mean()、median()</td>
 <td>均值、中位数</td>
 </tr>
-<tr>
+<tr class="even">
 <td>min()、max()</td>
 <td>最小值和最大值</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>std()、var()</td>
 <td>标准差和方差</td>
 </tr>
-<tr>
+<tr class="even">
 <td>mad()</td>
 <td>均值绝对偏差</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>prod()</td>
 <td>所有项乘积</td>
 </tr>
-<tr>
+<tr class="even">
 <td>sum()</td>
 <td>所有项之和</td>
 </tr>
-</tbody></table>
-<ol start="3">
-<li>groupby的过程：分割、应用和组合，groupby的中间分割过程不需要显示的暴露出来；<ul>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li>groupby的过程：分割、应用和组合，groupby的中间分割过程不需要显示的暴露出来；
+<ul>
 <li>分割步骤将DataFrame按照指定的键分割成若干组；</li>
 <li>应用步骤对每个组应用函数，通常是累计、转换或过滤函数；</li>
 <li>组合步骤将每一组的结果合并成一个输出数组；</li>
-</ul>
-</li>
-<li>GroupBy对象的累计、过滤、转换和应用：<ul>
-<li>aggregate()方法支持一次进行多个累计运算，如 <code>data.groupby(&#39;key&#39;).aggregate(np.sum,np.min,np.mean)</code>；也可以指定不同的列使用不同的累计函数，如 <code>data.groupby(&#39;key&#39;).aggregate(&#123;&#39;column1&#39;:np.sum,&#39;column2&#39;:np.mean&#125;)</code>；</li>
-<li>filter支持过滤掉不需要的数据，如 <code>data.groupby(&#39;key&#39;).filter(filter_func)</code>，其中filter_func的入参是分组，出参是该分组是否通过过滤；</li>
-<li>转换会返回一个与原数据形状一样的全新数据，常用来将标准数据减去均值以实现数据标准化，如 <code>data.groupby(&#39;key&#39;).transfrom(lambda x : x - x.mean())</code>；</li>
+</ul></li>
+<li>GroupBy对象的累计、过滤、转换和应用：
+<ul>
+<li>aggregate()方法支持一次进行多个累计运算，如
+<code>data.groupby('key').aggregate(np.sum,np.min,np.mean)</code>；也可以指定不同的列使用不同的累计函数，如
+<code>data.groupby('key').aggregate(&#123;'column1':np.sum,'column2':np.mean&#125;)</code>；</li>
+<li>filter支持过滤掉不需要的数据，如
+<code>data.groupby('key').filter(filter_func)</code>，其中filter_func的入参是分组，出参是该分组是否通过过滤；</li>
+<li>转换会返回一个与原数据形状一样的全新数据，常用来将标准数据减去均值以实现数据标准化，如
+<code>data.groupby('key').transfrom(lambda x : x - x.mean())</code>；</li>
 <li>apply方法可以在分组上应用任意方法，方法的入参是DataFrame，出参则是一个pandas对象(DataFrame或Series)；</li>
-</ul>
-</li>
-<li>分组的方法：<ul>
-<li>列表、数组、Series 或索引作为分组键，<code>df.groupby([0,1,2,0,1,0]).sum()</code>；</li>
-<li>字典或 Series 将索引映射到分组名称，<code>df.groupby(&#123;&#39;A&#39;:&#39;China&#39;,&#39;B&#39;:&#39;USA&#39;&#125;).sum()</code></li>
+</ul></li>
+<li>分组的方法：
+<ul>
+<li>列表、数组、Series
+或索引作为分组键，<code>df.groupby([0,1,2,0,1,0]).sum()</code>；</li>
+<li>字典或 Series
+将索引映射到分组名称，<code>df.groupby(&#123;'A':'China','B':'USA'&#125;).sum()</code></li>
 <li>任意python函数,<code>df.groupby(str.lower).mean()</code></li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h3 id="数据透视表"><a href="#数据透视表" class="headerlink" title="数据透视表"></a>数据透视表</h3><p>数据透视表将每一列数据作为输入，输出将数据不断细分成多个维度累计信息的二维数据表，像一种多维的GroupBy累计操作；数据透视表的完整签名为：</p>
+<h3 id="数据透视表">数据透视表</h3>
+<p>数据透视表将每一列数据作为输入，输出将数据不断细分成多个维度累计信息的二维数据表，像一种多维的GroupBy累计操作；数据透视表的完整签名为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataFrame.pivot_table(data, values=<span class="literal">None</span>,index=<span class="literal">None</span>, columns=<span class="literal">None</span>,aggfunc=<span class="string">&#x27;mean&#x27;</span>, fill_value=<span class="literal">None</span>,margins=<span class="literal">False</span>,dropna=<span class="literal">True</span>,margins_name=<span class="string">&#x27;All&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="向量化字符串操作"><a href="#向量化字符串操作" class="headerlink" title="向量化字符串操作"></a>向量化字符串操作</h3><ol>
+<h3 id="向量化字符串操作">向量化字符串操作</h3>
+<ol type="1">
 <li>Pandas为包含字符串的Series和Index对象提供的str属性可以满足向量化字符串操作的需求，也可以正确的处理缺失值；</li>
-<li>pandas中可使用的字符串向量方法：<ul>
+<li>pandas中可使用的字符串向量方法：
+<ul>
 <li>与python字符串类似的方法：data.str.len()、data.str.lower()等</li>
-<li>使用正则表达式方法，data.str.match()、data.str.findall(r’’)等</li>
+<li>使用正则表达式方法，data.str.match()、data.str.findall(r'')等</li>
 <li>其他如get()、slice()等字符串方法</li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h3 id="处理时间序列"><a href="#处理时间序列" class="headerlink" title="处理时间序列"></a>处理时间序列</h3><ol>
+<h3 id="处理时间序列">处理时间序列</h3>
+<ol type="1">
 <li><p>Pandas 用来处理时间序列的基础数据类型：</p>
 <ul>
 <li>针对时间戳数据，Pandas提供了Timestamp类型；基于numpy的datetime64类型创建，对应的索引类型为DatetimeIndex；</li>
 <li>针对时间周期数据，Pandas提供了Period类型；对应的索引类型为PeriodIndex，任何DatetimeIndex均可通过to_period转为PeriodIndex；</li>
-<li>针对时间增量或持续时间，Pandas提供了Timedelta类型；基于numpy的timedelta64类型创建，对应的索引数据结构是TimedeltaIndex；用一个日期减去另一个日期时，返回的结果是 **TimedeltaIndex类型</li>
-</ul>
-</li>
-<li><p>通过 <code>pd.date_range(&#39;2020-01-01&#39;,preiod=8,freq=&#39;D&#39;)、pd.period_range(&#39;2015-07&#39;, periods=8, freq=&#39;M&#39;)、pd.timedelta_range(0, periods=10, freq=&#39;H&#39;)</code>来快速创建时间序列；</p>
-</li>
-<li><p>pandas时间频率和偏移量代码：</p>
-<table>
-<thead>
-<tr>
-<th>代码</th>
-<th>描述</th>
-<th>代码</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>D</td>
-<td>天</td>
-<td>BM</td>
-<td>月末(仅工作日)</td>
-</tr>
-<tr>
-<td>W</td>
-<td>周</td>
-<td>BQ</td>
-<td>季末(仅工作日)</td>
-</tr>
-<tr>
-<td>M</td>
-<td>月末</td>
-<td>BA</td>
-<td>年末(仅工作日)</td>
-</tr>
-<tr>
-<td>Q</td>
-<td>季末</td>
-<td>BH</td>
-<td>小时，工作时间</td>
-</tr>
-<tr>
-<td>A</td>
-<td>年末</td>
-<td>MS</td>
-<td>月初</td>
-</tr>
-<tr>
-<td>H</td>
-<td>小时</td>
-<td>BMS</td>
-<td>月初，仅工作日</td>
-</tr>
-<tr>
-<td>T</td>
-<td>分钟</td>
-<td>QS</td>
-<td>季初</td>
-</tr>
-<tr>
-<td>S</td>
-<td>秒</td>
-<td>BQS</td>
-<td>季初，仅工作日</td>
-</tr>
-<tr>
-<td>L</td>
-<td>毫秒</td>
-<td>AS</td>
-<td>年初</td>
-</tr>
-<tr>
-<td>U</td>
-<td>微秒</td>
-<td>BAS</td>
-<td>年初，仅工作日</td>
-</tr>
-<tr>
-<td>N</td>
-<td>纳秒</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>B</td>
-<td>天(仅含工作日)</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-</li>
+<li>针对时间增量或持续时间，Pandas提供了Timedelta类型；基于numpy的timedelta64类型创建，对应的索引数据结构是TimedeltaIndex；用一个日期减去另一个日期时，返回的结果是
+**TimedeltaIndex类型</li>
+</ul></li>
+<li><p>通过
+<code>pd.date_range('2020-01-01',preiod=8,freq='D')、pd.period_range('2015-07', periods=8, freq='M')、pd.timedelta_range(0, periods=10, freq='H')</code>来快速创建时间序列；</p></li>
+<li><p>pandas时间频率和偏移量代码： | 代码 | 描述 | 代码 | 描述 | | ----
+| -------------- | ---- | -------------- | | D | 天 | BM |
+月末(仅工作日) | | W | 周 | BQ | 季末(仅工作日) | | M | 月末 | BA |
+年末(仅工作日) | | Q | 季末 | BH | 小时，工作时间 | | A | 年末 | MS |
+月初 | | H | 小时 | BMS | 月初，仅工作日 | | T | 分钟 | QS | 季初 | | S
+| 秒 | BQS | 季初，仅工作日 | | L | 毫秒 | AS | 年初 | | U | 微秒 | BAS
+| 年初，仅工作日 | | N | 纳秒 | | | | B | 天(仅含工作日) | | |</p></li>
 </ol>
-<h3 id="高性能的eval"><a href="#高性能的eval" class="headerlink" title="高性能的eval()"></a>高性能的eval()</h3><ol>
-<li>numpy的复合代数式计算会在中间过程显示的分配内存，Numexpr在计算代数式时不需要为临时数组分配全部内存,<code>numexpr.evaluate(&#39;(x &gt; 0.5) &amp; (y &lt; 0.5)&#39;)</code>；</li>
-<li><code>pandas.eval(&#39;d1+d2+d3+d4&#39;)</code>支持算术运算符、比较运算符、位运算符、对象属性与索引；其他如函数调用、条件语句、循环及更复杂的运算可通过numexpr来实现；</li>
-<li><code>df.eval(&#39;D = (A+B)/C&#39;)</code>支持新增列、局部变量(使用@符号)；<code>df.query(&#39;A&gt;0.5 &amp; B &lt; 0.4&#39;)</code>支持过滤运算，也支持使用局部变量；</li>
+<h3 id="高性能的eval">高性能的eval()</h3>
+<ol type="1">
+<li>numpy的复合代数式计算会在中间过程显示的分配内存，Numexpr在计算代数式时不需要为临时数组分配全部内存,<code>numexpr.evaluate('(x &gt; 0.5) &amp; (y &lt; 0.5)')</code>；</li>
+<li><code>pandas.eval('d1+d2+d3+d4')</code>支持算术运算符、比较运算符、位运算符、对象属性与索引；其他如函数调用、条件语句、循环及更复杂的运算可通过numexpr来实现；</li>
+<li><code>df.eval('D = (A+B)/C')</code>支持新增列、局部变量(使用@符号)；<code>df.query('A&gt;0.5 &amp; B &lt; 0.4')</code>支持过滤运算，也支持使用局部变量；</li>
 </ol>
 
       
@@ -923,20 +911,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="numpy基础"><a href="#numpy基础" class="headerlink" title="numpy基础"></a>numpy基础</h3><ol>
+          <h3 id="numpy基础">numpy基础</h3>
+<ol type="1">
 <li>numpy数组中包含的是一组同类型的值，<code>np.array([1,2,3,4,5],dtype=np.float)</code>可在创建数组时通过dtype指定所有值转化为某个类型的值；向numpy数组中添加数据时，会自动转换数据类型而不是报错；</li>
 <li>每个数组有nidm(数组的维度)、shape(数组每个维度的大小)、size(数组的总大小)、dtype(数组的数据类型)属性；</li>
-<li><code>x[:,0]</code>和 <code>x[0,:]</code>分别获取二维数组的第一列和第一行；numpy的数组切片返回的是数组数据的视图而不是副本，这意味着修改切片子数组会同时修改原始数据，如果明确需要复制数组可以使用 <code>x[:2,:2].copy()</code>来获得副本；</li>
-<li><code>np.concatenate([x,y,z],axis=1)</code>可将多个数组按指定轴拼接，需要沿指定轴拼接时使用 <code>np.vstack([x,y,z])</code>和 <code>np.hstack([x,y,z])</code>会更简洁；</li>
-<li><code>np.split(x,[3,5])</code>可将x数组在索引3和5处将x分裂为3个子数组，<code>np.vsplit(x,[2])</code>和 <code>np.hsplit(x,[2])</code>可沿指定轴分裂；</li>
+<li><code>x[:,0]</code>和
+<code>x[0,:]</code>分别获取二维数组的第一列和第一行；numpy的数组切片返回的是数组数据的视图而不是副本，这意味着修改切片子数组会同时修改原始数据，如果明确需要复制数组可以使用
+<code>x[:2,:2].copy()</code>来获得副本；</li>
+<li><code>np.concatenate([x,y,z],axis=1)</code>可将多个数组按指定轴拼接，需要沿指定轴拼接时使用
+<code>np.vstack([x,y,z])</code>和
+<code>np.hstack([x,y,z])</code>会更简洁；</li>
+<li><code>np.split(x,[3,5])</code>可将x数组在索引3和5处将x分裂为3个子数组，<code>np.vsplit(x,[2])</code>和
+<code>np.hsplit(x,[2])</code>可沿指定轴分裂；</li>
 <li>numpy为很多类型的操作提供了非常方便的、静态类型的、可编译程序的接口，也被称为向量操作；当在python程序中发现有循环的操作时，总是要考虑是否应该用向量方式替换循环；</li>
 </ol>
-<h3 id="numpy广播"><a href="#numpy广播" class="headerlink" title="numpy广播"></a>numpy广播</h3><ol>
-<li>如果两个数组的维度数不同，那么小维度数组的形状 <code>np.shape</code>将在最左边补1；</li>
+<h3 id="numpy广播">numpy广播</h3>
+<ol type="1">
+<li>如果两个数组的维度数不同，那么小维度数组的形状
+<code>np.shape</code>将在最左边补1；</li>
 <li>如果两个数组的形状在任何维度上都不匹配，那么数组的形状会沿着维度为1的维度扩展以匹配另外一个数组的形状；</li>
-<li>如果两个数组的形状在任何一个维度上都不匹配且没有任何一个维度等于1 ，那么会引发异常；</li>
+<li>如果两个数组的形状在任何一个维度上都不匹配且没有任何一个维度等于1
+，那么会引发异常；</li>
 </ol>
-<h3 id="花哨的索引"><a href="#花哨的索引" class="headerlink" title="花哨的索引"></a>花哨的索引</h3><ol>
+<h3 id="花哨的索引">花哨的索引</h3>
+<ol type="1">
 <li>花哨的索引意味着传递一个索引数组来一次性获得多个数组元素，对多个维度的数组也适用；</li>
 </ol>
 
@@ -1023,7 +1021,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h3><ol>
+          <h3 id="smtp">SMTP</h3>
+<ol type="1">
 <li><code>smtplib.SMTP(domain,port)</code>获取stmp对象；</li>
 <li><code>smtp.ehlo()</code>启动与服务器的连接；</li>
 <li><code>smtp.starttls()</code>开启服务端加密，让SMTP连接处于TLS模式；</li>
@@ -1031,11 +1030,12 @@
 <li><code>smtp.sendmail(from,to,email)</code>发送电子邮件；</li>
 <li><code>smtp.quit()</code>将与邮件服务器断开连接；</li>
 </ol>
-<h3 id="IMAP"><a href="#IMAP" class="headerlink" title="IMAP"></a>IMAP</h3><ol>
+<h3 id="imap">IMAP</h3>
+<ol type="1">
 <li><code>imapclient.IMAPClient(domain,ssl=True)</code>连接到指定服务器并返回imap对象；</li>
 <li><code>imap.login(username,password)</code>登录到邮件服务器；</li>
 <li><code>imap.select_folder(name,readonly=True)</code>可选择文件夹，<code>imap.search()</code>可在文件夹中搜索邮件；</li>
-<li><code>imap.fetch(UIDS,&#39;BODY[]&#39;)</code>可获取邮件并标记已读，<code>imap.delete_messages(UIDS)</code>可删除邮件；</li>
+<li><code>imap.fetch(UIDS,'BODY[]')</code>可获取邮件并标记已读，<code>imap.delete_messages(UIDS)</code>可删除邮件；</li>
 <li><code>imap.logout()</code>将与邮件服务器断开连接；</li>
 </ol>
 
@@ -1122,14 +1122,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="常见的时间函数"><a href="#常见的时间函数" class="headerlink" title="常见的时间函数"></a>常见的时间函数</h3><ol>
+          <h3 id="常见的时间函数">常见的时间函数</h3>
+<ol type="1">
 <li><code>time.time()</code>表示当前时刻的时间戳，<code>time.sleep()</code>函数让程序休眠指定时长；</li>
 <li><code>datetime.datetime(year,month,days)</code>可返回指定时刻的datetime对象，<code>datetime.now()</code>返回当前时间的datetime对象，<code>datetime.timedelta(year,month,day,minute,seconds)</code>返回表示一段时间的timedelta对象，如果要实现当前时间前后移多长时间需通过datetime和timedelta相加减实现；</li>
 <li><code>datetime.strftime(format)</code>将datetime转为一个指定格式的时间字符串，<code>datetime.strptime(time_str,format)</code>可将一个字符串转为datetime对象；</li>
 </ol>
-<h3 id="多线程、进程"><a href="#多线程、进程" class="headerlink" title="多线程、进程"></a>多线程、进程</h3><ol>
-<li><code>threading.Thread(target = methodName)</code>将创建一个线程对象thread，调用 <code>thread.start()</code>方法即可在新线程中执行methodName所代表的方法；</li>
-<li>调用 <code>thread.join()</code>可阻塞当前线程并等待thread线程运行结束后继续执行；</li>
+<h3 id="多线程进程">多线程、进程</h3>
+<ol type="1">
+<li><code>threading.Thread(target = methodName)</code>将创建一个线程对象thread，调用
+<code>thread.start()</code>方法即可在新线程中执行methodName所代表的方法；</li>
+<li>调用
+<code>thread.join()</code>可阻塞当前线程并等待thread线程运行结束后继续执行；</li>
 <li>调用subprocess.Popen()函数可启动计算机中的其他程序；</li>
 </ol>
 
@@ -1216,37 +1220,56 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="读取excel"><a href="#读取excel" class="headerlink" title="读取excel"></a>读取excel</h3><ol>
-<li>调用 <code>openpyxl.load_workbook()</code>函数取得WorkBook对象；</li>
-<li>调用 <code>workbook.active()</code>或sheetnames属性取得WorkSheet对象；</li>
-<li>使用索引或工作表的 <code>cell()</code>方法，带上row和column关键字参数取得Cell对象；</li>
+          <h3 id="读取excel">读取excel</h3>
+<ol type="1">
+<li>调用
+<code>openpyxl.load_workbook()</code>函数取得WorkBook对象；</li>
+<li>调用
+<code>workbook.active()</code>或sheetnames属性取得WorkSheet对象；</li>
+<li>使用索引或工作表的
+<code>cell()</code>方法，带上row和column关键字参数取得Cell对象；</li>
 <li>读取cell的value属性，value会自动转化为对应的整数、字符串、日期类型title；</li>
 </ol>
-<h3 id="写入excel"><a href="#写入excel" class="headerlink" title="写入excel"></a>写入excel</h3><ol>
-<li>调用 <code>openpyxl.WorkBook()</code>创建一个空白的WorkBook对象；</li>
-<li>调用 <code>workbook.create_sheet(index=0,title=&#39;First Sheet&#39;)</code>创建一个WorkSheet对象；</li>
-<li>通过 <code>sheet[&#39;A1&#39;] = value</code>为指定单元格赋值；</li>
-<li>调用 <code>del workbook[&#39;sheet&#39;]</code>删除多余的工作表；</li>
-<li>调用workbook.save(‘Example.xlsx’)保存更改；</li>
+<h3 id="写入excel">写入excel</h3>
+<ol type="1">
+<li>调用
+<code>openpyxl.WorkBook()</code>创建一个空白的WorkBook对象；</li>
+<li>调用
+<code>workbook.create_sheet(index=0,title='First Sheet')</code>创建一个WorkSheet对象；</li>
+<li>通过 <code>sheet['A1'] = value</code>为指定单元格赋值；</li>
+<li>调用 <code>del workbook['sheet']</code>删除多余的工作表；</li>
+<li>调用workbook.save('Example.xlsx')保存更改；</li>
 </ol>
-<h3 id="其他excel操作"><a href="#其他excel操作" class="headerlink" title="其他excel操作"></a>其他excel操作</h3><ol>
-<li>通过 <code>sheet[&#39;A1&#39;].font = Font(name = &#39;Calibri&#39;,bold = True,italic = True)</code>更改单元格的字体；</li>
-<li><code>sheet[&#39;B9&#39;] = &#39;=SUM(B1:B8)&#39;</code>可在单元格中添加公式；</li>
-<li><code>sheet.row_dimensions[1].height = 20</code>和 <code>sheet.column_dimensions[&#39;B&#39;].wight = 70</code>可设置行高和列宽；</li>
-<li><code>sheet.merge_cells(&#39;A1:D3&#39;)</code>可合并单元格；<code>sheet.unmerge_cells(&#39;A1:D3&#39;)</code>可拆分单元格；</li>
-<li><code>sheet.freeze_panes = &#39;A2&#39;</code>可冻结第一行，<code>sheet.freeze_panes = None</code>可解除冻结；</li>
+<h3 id="其他excel操作">其他excel操作</h3>
+<ol type="1">
+<li>通过
+<code>sheet['A1'].font = Font(name = 'Calibri',bold = True,italic = True)</code>更改单元格的字体；</li>
+<li><code>sheet['B9'] = '=SUM(B1:B8)'</code>可在单元格中添加公式；</li>
+<li><code>sheet.row_dimensions[1].height = 20</code>和
+<code>sheet.column_dimensions['B'].wight = 70</code>可设置行高和列宽；</li>
+<li><code>sheet.merge_cells('A1:D3')</code>可合并单元格；<code>sheet.unmerge_cells('A1:D3')</code>可拆分单元格；</li>
+<li><code>sheet.freeze_panes = 'A2'</code>可冻结第一行，<code>sheet.freeze_panes = None</code>可解除冻结；</li>
 </ol>
-<h3 id="操作pdf文件"><a href="#操作pdf文件" class="headerlink" title="操作pdf文件"></a>操作pdf文件</h3><ol>
-<li><code>PyPDF2.PdfFileReader(io)</code>将获得PdfReader对象，<code>pdfReader.getPage()</code>可获得指定页面，如果pdf有加密，则可以通过 <code>pdfReader.decrypt(&#39;password&#39;)</code>解密;</li>
-<li>PyPDF2并不能将任意文本写入pdf文档，仅限于从其他PDF中复制页面、旋转页面、重叠页面和加密文件；通过 <code>PyPDF2.PdfFileWriter(io)</code>可创建文件，<code>pdfWriter.addPage(page)</code>可从其他pdf复制页面，<code>page.rotateClockWise(90)</code>可旋转页面，<code>page.mergePage(page)</code>可重叠多个pdf页面以实现水印功能，<code>pdfWriter.encrypt(&#39;password&#39;)</code>可加密pdf文件；</li>
+<h3 id="操作pdf文件">操作pdf文件</h3>
+<ol type="1">
+<li><code>PyPDF2.PdfFileReader(io)</code>将获得PdfReader对象，<code>pdfReader.getPage()</code>可获得指定页面，如果pdf有加密，则可以通过
+<code>pdfReader.decrypt('password')</code>解密;</li>
+<li>PyPDF2并不能将任意文本写入pdf文档，仅限于从其他PDF中复制页面、旋转页面、重叠页面和加密文件；通过
+<code>PyPDF2.PdfFileWriter(io)</code>可创建文件，<code>pdfWriter.addPage(page)</code>可从其他pdf复制页面，<code>page.rotateClockWise(90)</code>可旋转页面，<code>page.mergePage(page)</code>可重叠多个pdf页面以实现水印功能，<code>pdfWriter.encrypt('password')</code>可加密pdf文件；</li>
 </ol>
-<h3 id="处理csv文件"><a href="#处理csv文件" class="headerlink" title="处理csv文件"></a>处理csv文件</h3><ol>
-<li><code>open()</code>打开文件，<code>csv.reader(file)</code>可返回csv文件的reader对象，可使用 <code>reader[0][0]</code>来获取指定位置的值，使用 <code> for row in reader</code>来遍历csv的每一行，注意reader对象只能遍历一次；</li>
-<li><code>open(str,&#39;w&#39;)</code>打开文件,<code>cvs.writer(file)</code>可返回csv的writer对象，使用 <code>writer.writerRow(list)</code>来逐步写入行，最后调用 <code>file.close()</code>方法结束；</li>
+<h3 id="处理csv文件">处理csv文件</h3>
+<ol type="1">
+<li><code>open()</code>打开文件，<code>csv.reader(file)</code>可返回csv文件的reader对象，可使用
+<code>reader[0][0]</code>来获取指定位置的值，使用
+<code>for row in reader</code>来遍历csv的每一行，注意reader对象只能遍历一次；</li>
+<li><code>open(str,'w')</code>打开文件,<code>cvs.writer(file)</code>可返回csv的writer对象，使用
+<code>writer.writerRow(list)</code>来逐步写入行，最后调用
+<code>file.close()</code>方法结束；</li>
 <li>创建reader和writer对象时，可传入delimiter和lineterminator来指定分隔符和换行符；</li>
 <li>如果需要处理含标题的csv文件，使用DictReader和DictWriter来替代Reader和Writer即可；为避免csv文件中没有标题行，可直接在DictReader第二个参数传入list作为标题；</li>
 </ol>
-<h3 id="处理JSON"><a href="#处理JSON" class="headerlink" title="处理JSON"></a>处理JSON</h3><ol>
+<h3 id="处理json">处理JSON</h3>
+<ol type="1">
 <li><code>json.loads(jsonstr)</code>将json字符串转为一个python字典，<code>json.dumps(dict)</code>可将python字典转为json字符串；</li>
 </ol>
 
@@ -1333,25 +1356,37 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="下载并保存文件"><a href="#下载并保存文件" class="headerlink" title="下载并保存文件"></a>下载并保存文件</h3><ol>
+          <h3 id="下载并保存文件">下载并保存文件</h3>
+<ol type="1">
 <li>调用 <code>requests.get()</code>下载该文件；</li>
 <li>利用 <code>response.raise_for_status()</code>校验是否下载成功；</li>
-<li>用’wb’调用 <code>open()</code>，以二进制的方式打开一个新文件，目的是保存文本中的”Unicode”编码；</li>
-<li>利用 <code>response.iter_content()</code>方法做循环，在每个循环中调用 <code>write()</code>方法将文本内容写入文件；</li>
+<li>用'wb'调用
+<code>open()</code>，以二进制的方式打开一个新文件，目的是保存文本中的"Unicode"编码；</li>
+<li>利用
+<code>response.iter_content()</code>方法做循环，在每个循环中调用
+<code>write()</code>方法将文本内容写入文件；</li>
 <li>调用 <code>close()</code>方法关闭文件；</li>
 </ol>
-<h3 id="解析HTML"><a href="#解析HTML" class="headerlink" title="解析HTML"></a>解析HTML</h3><ol>
+<h3 id="解析html">解析HTML</h3>
+<ol type="1">
 <li>调用 <code>request.get()</code>获取html文件</li>
 <li>利用 <code>response.raise_for_status()</code>校验是否下载成功；</li>
-<li><code>bs4.BeautifulSoup(response.text,&#39;html.parse&#39;)</code>创建bs对象；</li>
+<li><code>bs4.BeautifulSoup(response.text,'html.parse')</code>创建bs对象；</li>
 <li><code>bs4.select()</code>查找指定元素，可在chrome浏览器中直接复制selector路径；</li>
-<li>通过 <code>get()</code>获得select返回的Tag对象中各种元素的取值；</li>
+<li>通过
+<code>get()</code>获得select返回的Tag对象中各种元素的取值；</li>
 </ol>
-<h3 id="使用selenium模块控制浏览器"><a href="#使用selenium模块控制浏览器" class="headerlink" title="使用selenium模块控制浏览器"></a>使用selenium模块控制浏览器</h3><ol>
-<li>使用 <code>webdriver.Chrome()</code>模拟打开浏览器，该方法返回一个浏览器代理对象，注意webdriver needs to be in PATH的问题；</li>
+<h3 id="使用selenium模块控制浏览器">使用selenium模块控制浏览器</h3>
+<ol type="1">
+<li>使用
+<code>webdriver.Chrome()</code>模拟打开浏览器，该方法返回一个浏览器代理对象，注意webdriver
+needs to be in PATH的问题；</li>
 <li>调用browser代理对象的 <code>get()</code>方法打开指定页面；</li>
-<li>通过 <code>brower.find_element_by_xx()</code>的方法来获取html中的元素WebElement；</li>
-<li>调用WebElement的 <code>send_keys()</code>方法填写内容，调用 <code>click()</code>方法模拟点击，调用 <code>submit()</code>方法提交表单；</li>
+<li>通过
+<code>brower.find_element_by_xx()</code>的方法来获取html中的元素WebElement；</li>
+<li>调用WebElement的 <code>send_keys()</code>方法填写内容，调用
+<code>click()</code>方法模拟点击，调用
+<code>submit()</code>方法提交表单；</li>
 </ol>
 
       
@@ -1422,7 +1457,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
