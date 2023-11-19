@@ -105,6 +105,74 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://youngch330.github.io/2023/11/19/%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Young">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Young's 博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Young's 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/19/%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">分类算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-19 21:36:02" itemprop="dateCreated datePublished" datetime="2023-11-19T21:36:02+08:00">2023-11-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://youngch330.github.io/2023/11/08/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -136,6 +204,22 @@
 
       <time title="创建时间：2023-11-08 21:52:05" itemprop="dateCreated datePublished" datetime="2023-11-08T21:52:05+08:00">2023-11-08</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-19 21:35:20" itemprop="dateModified" datetime="2023-11-19T21:35:20+08:00">2023-11-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -147,7 +231,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>线性回归函数如下，其中w代表斜率，b代表截距；<br>$$ f_{w,b}(x^{(i)}) &#x3D; wx^{(i)} + b $$</p>
+<h3 id="成本函数"><a href="#成本函数" class="headerlink" title="成本函数"></a>成本函数</h3><p>$$J(w,b) &#x3D; \frac{1}{2m} \sum\limits_{i &#x3D; 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 $$ </p>
+<ul>
+<li>成本函数的关键是找到一个w和b，使得成本函数在训练集上的值最小或接近最小；</li>
+<li>其中$f_{w,b}(x^{(i)})$为预测值，$(f_{w,b}(x^{(i)}) -y^{(i)})^2$为预测值和目标值之差的平方；</li>
+</ul>
+<h3 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h3><p>梯度下降算法如下：<br>$$\begin{align*} \text{repeat}&amp;\text{ until convergence:} ; \lbrace \newline<br>;  w &amp;&#x3D; w -  \alpha \frac{\partial J(w,b)}{\partial w} ; \newline<br> b &amp;&#x3D; b -  \alpha \frac{\partial J(w,b)}{\partial b}  \newline \rbrace<br>\end{align*}$$<br>当参数w和b变化时，梯度算法实际上是求偏导数:<br>$$<br>\begin{align}<br>\frac{\partial J(w,b)}{\partial w}  &amp;&#x3D; \frac{1}{m} \sum\limits_{i &#x3D; 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})x^{(i)} ;\newline<br>\frac{\partial J(w,b)}{\partial b}  &amp;&#x3D; \frac{1}{m} \sum\limits_{i &#x3D; 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)}) \newline<br>\end{align}<br>$$</p>
+<h3 id="使用scikit-learn实现线性回归"><a href="#使用scikit-learn实现线性回归" class="headerlink" title="使用scikit-learn实现线性回归"></a>使用scikit-learn实现线性回归</h3><ol>
+<li>加载数据</li>
+<li>归一化处理：<code>StandardScaler.fit_transform(X_train)</code></li>
+<li>拟合回归模型，获取参数w和b<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sgdr = SGDRegressor(max_iter=1000)</span><br><span class="line">sgdr.fit(X_norm, y_train)</span><br><span class="line">b_norm = sgdr.intercept_</span><br><span class="line">w_norm = sgdr.coef_</span><br></pre></td></tr></table></figure></li>
+<li>执行预测<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sgdr.predict(X_norm)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
       
     </div>
 
@@ -1245,119 +1342,6 @@
 <li>调用browser代理对象的 <code>get()</code>方法打开指定页面；</li>
 <li>通过 <code>brower.find_element_by_xx()</code>的方法来获取html中的元素WebElement；</li>
 <li>调用WebElement的 <code>send_keys()</code>方法填写内容，调用 <code>click()</code>方法模拟点击，调用 <code>submit()</code>方法提交表单；</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://youngch330.github.io/2023/08/27/%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Young">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Young's 博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Young's 博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/27/%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">读写文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-27 16:02:13" itemprop="dateCreated datePublished" datetime="2023-08-27T16:02:13+08:00">2023-08-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-26 14:57:41" itemprop="dateModified" datetime="2023-09-26T14:57:41+08:00">2023-09-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="如何获取文件"><a href="#如何获取文件" class="headerlink" title="如何获取文件"></a>如何获取文件</h3><ol>
-<li>使用pathlib中的Path替代os.path()；</li>
-<li>始终使用正斜杠&#x2F;以确保程序在不同操作系统中均可正常运行；尽量使用&#x2F;运算符来连接路径，第一个对象必须是Path，如 <code>Path(&#39;documents&#39;) / &#39;data.xlsx&#39;</code>；</li>
-<li>绝对路径：总是从根文件夹开始，可以使用 <code>path.is_absolute()</code>判断是否为绝对路径；相对路径：相对于程序的当前工作目录 <code>Path.cwd()</code>，可以使用 <code>Path.cwd() / Path(&#39;相对路径&#39;)</code>将相对路径转化为绝对路径；</li>
-<li><code>path.anchor</code>获取系统的根文件夹；<code>path.parent</code>获取父文件夹，返回一个path对象；<code>path.parents</code>返回一组path对象，代表祖先文件夹；<code>path.name</code>由 <code>path.stem</code>主干名和 <code>path.suffix</code>后缀组成；</li>
-<li><code>path.glob()</code>将返回一个生成器对象，将该对象传递给 <code>list()</code>方法可根据通配符模式列出文件夹的内容，如 <code>path.glob(&#39;*.py&#39;)</code>将返回文件夹下所有py结尾的文件；</li>
-<li>通过 <code>path.exists()</code>来确认路径是否存在，通过 <code>path.is_file()</code>和 <code>path.is_dir()</code>确认该路径是文件或文件夹；</li>
-</ol>
-<h3 id="如何读写文件"><a href="#如何读写文件" class="headerlink" title="如何读写文件"></a>如何读写文件</h3><ol>
-<li>三个步骤：<ul>
-<li>调用 <code>open()</code>函数，返回一个File对象；通过传入r&#x2F;w&#x2F;a来开启读模式、写模式或添加模式；如果传递给 <code>open()</code>的文件名不存在，在写或添加模式下都会创建文件；</li>
-<li>调用File对象的 <code>read()</code>或 <code>write()</code>方法；</li>
-<li>调用File对象的 <code>close()</code>方法，关闭该文件；</li>
-</ul>
-</li>
-<li>利用shelve模块可以将变量以二进制的形式保存到shelve文件中<ul>
-<li><code>shelve.open()</code>打开文件；</li>
-<li><code>shelve[&#39;xxx&#39;]=xxx</code>来对shelve的值进行修改；</li>
-<li><code>shelve[&#39;xxx&#39;]</code>读取shelve中key为xxx的值；</li>
-<li><code>shelve.close()</code>将shelve文件保存到硬盘上；</li>
-</ul>
-</li>
-<li>通过 <code>pprint.pformat()</code>将字典转为易读的字符串并通过 <code>path.write()</code>方法写入文本文档中，以便可以使用notepad等工具随时修改；</li>
-</ol>
-<h3 id="如何组合文件"><a href="#如何组合文件" class="headerlink" title="如何组合文件"></a>如何组合文件</h3><ol>
-<li><code>shutil.copy(source,destination)</code>将路径处的文件复制到路径destination处的文件夹；通过 <code>shutil.move(source,destination)</code>实现文件的移动和重命名;<code>os.unlink(path)</code>会删除path处的文件;<code>os.rmdir(path)</code>会删除path处的文件夹，该文件夹必须为空；<code>shutil.rmtree(path)</code>将删除path处的文件夹，包含所有子文件及文件夹；</li>
-<li><code>os.work()</code>返回当前文件夹名称、当前文件夹子文件夹字符串列表、当前文件夹下文件字符串列表；</li>
-<li><code>zipfile.ZipFile(path)</code>可获取zip文件对象，<code>example.namelist()</code>获取压缩文件下所有文件及文件夹；<code>example.getinfo(filename)</code>获得压缩文件中指定文件信息，<code>zipinfo.file_size()</code>和 <code>zipinfo.compress_size()</code>分别获得文件原始大小和压缩后的文件大小；<code>example.exract(filename,path)</code>可将文件解压到指定目录；<code>zipfile.ZipFile(&#39;xxx.zip&#39;,&#39;w&#39;)</code>将创建一个压缩文件，通过 <code>example.write(filename)</code>将指定文件压缩至zip文件中。</li>
 </ol>
 
       
