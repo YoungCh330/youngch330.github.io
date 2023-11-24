@@ -105,6 +105,101 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://youngch330.github.io/2023/08/03/%E8%B5%8E%E9%87%91%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Young">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Young's 博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Young's 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/08/03/%E8%B5%8E%E9%87%91%E4%BF%A1/" class="post-title-link" itemprop="url">赎金信</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-03 22:39:28" itemprop="dateCreated datePublished" datetime="2023-08-03T22:39:28+08:00">2023-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-26 14:59:11" itemprop="dateModified" datetime="2023-09-26T14:59:11+08:00">2023-09-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述">题目描述</h3>
+<p>给定一个赎金信 (ransom)
+字符串和一个杂志(magazine)字符串，判断第一个字符串 ransom
+能不能由第二个字符串 magazine 里面的字符构成。如果可以构成，返回 true
+；否则返回 false。</p>
+<p>注意：magazine中的每个字符只能在ransom中出现一次。</p>
+<h3 id="解题思路">解题思路</h3>
+<p>1、将magazine字符串中所出现的字符放入字典中，key为字符，value为该字符出现的次数</p>
+<p>2、验证字典中字符是否已覆盖赎金信的字符，逐个获取赎金信的字符，找到字典中对应key的value并-1，出现某个value&lt;0时则说明magazine无法构成ransom。</p>
+<h3 id="python源码">python源码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">solution</span>(<span class="params">ransom: <span class="built_in">str</span>, magazine: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="comment"># 这里也可以用数组或者dict</span></span><br><span class="line">    magazine_map = defaultdict(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> magazine:</span><br><span class="line">        magazine_map[c] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> ransom:</span><br><span class="line">        value = magazine_map.get(c)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> value <span class="keyword">or</span> value == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        magazine_map[c] = value - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://youngch330.github.io/2023/08/03/%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
